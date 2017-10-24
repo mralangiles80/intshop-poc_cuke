@@ -57,4 +57,23 @@
             </plugin>
         </plugins>
     </build>
+  <profiles>
+    <profile>
+      <id>winchrome</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>  <!-- This is the default profile -->
+      </activation>
+      <properties>
+        <config.browser>chrome</config.browser>
+        <config.os>Windows</config.os>
+      </properties>
+    </profile>
+    <profile>
+      <id>macchrome</id>
+      <properties>
+        <config.browser>chrome</config.browser>
+        <config.os>Mac</config.os>
+      </properties>
+    </profile>
+  </profiles>
 </project>

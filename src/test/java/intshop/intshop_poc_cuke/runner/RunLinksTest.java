@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         format = { "pretty", "html:target/cucumber" },
         glue = { "intshop.intshop_poc_cuke.steps"},
-        features = "classpath:cucumber/CheckLoginLinks.feature"
+        features = "src\\test\\java\\intshop\\intshop_poc_cuke\\features\\checkLoginLinks.feature"
 )
 
 public class RunLinksTest {
