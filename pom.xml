@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.intshop</groupId>
+  <groupId>intshop</groupId>
   <artifactId>intshop-poc_cuke</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -65,14 +65,14 @@
       </activation>
       <properties>
         <config.browser>chrome</config.browser>
-        <config.os>Windows</config.os>
+        <config.os>windows</config.os>
       </properties>
     </profile>
     <profile>
       <id>macchrome</id>
       <properties>
         <config.browser>chrome</config.browser>
-        <config.os>Mac</config.os>
+        <config.os>mac</config.os>
       </properties>
     </profile>
   </profiles>

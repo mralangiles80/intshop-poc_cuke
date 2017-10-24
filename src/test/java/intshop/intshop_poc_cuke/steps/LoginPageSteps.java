@@ -17,7 +17,8 @@ public class LoginPageSteps {
 
 		@Given("^I launch the browser and go to the correct URL$")
 		public void i_launch_the_browser_and_go_to_the_correct_URL() throws Throwable {
-			 System.setProperty("webdriver.chrome.driver", "C:\\java\\webdrivers\\chromedriver.exe");
+			
+			 System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\win\\chromedriver.exe");
 			 ChromeOptions chromeOptions = new ChromeOptions();
 			 chromeOptions.addArguments("--headless");
 			 WebDriver driver = new ChromeDriver(chromeOptions);

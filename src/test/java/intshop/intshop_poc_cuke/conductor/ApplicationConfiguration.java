@@ -8,10 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public final class ApplicationConfiguration {
 
-    private static ApplicationConfiguration instance;
+    private static ApplicationConfiguration instance = new ApplicationConfiguration();
     private String browser;
 
     public static ApplicationConfiguration Instance() {
+    	
         return instance;
     }
 
@@ -65,14 +66,17 @@ public final class ApplicationConfiguration {
      */
     private void configureSystemPropertiesForWebDriver(String os) {
         String chromePath;
-        if (os == "Windows") {
-            chromePath = String.format("src\\test\\resources\\win\\chromedriver.exe");
+        if (os == "windows") {
+            //chromePath = String.format("src\\test\\resources\\win\\chromedriver.exe");
+        	chromePath = "src\\test\\resources\\win\\chromedriver.exe";
 
         } else {
             chromePath = String.format("src/test/resources/macosx/chromedriver");
         }
+        //chromePath = "src\\test\\resources\\win\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", chromePath);
-        System.setProperty("webdriver.chrome.silentOutput", "true");
+       
+        //System.setProperty("webdriver.chrome.silentOutput", "true");
 
     }
 

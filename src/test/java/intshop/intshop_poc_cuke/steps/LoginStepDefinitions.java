@@ -1,14 +1,16 @@
-package intshop.intshop_poc_cuke.conductor;
+package intshop.intshop_poc_cuke.steps;
 
 import cucumber.api.java.After;
-import cucumber.api.java.en.Given;
+import cucumber.api.java.en.*;
+import intshop.intshop_poc_cuke.conductor.AbstractStepDefinitions;
+import intshop.intshop_poc_cuke.conductor.LoginPage;
 
 public class LoginStepDefinitions extends AbstractStepDefinitions {
 
     private LoginPage loginPage;
 
 
-    @Given("^I have navigated to the login page$")
+    @Given("^I log in using the abstract steps$")
 
     public void iHaveNavigatedToTheLoginPage() {
 
@@ -16,6 +18,11 @@ public class LoginStepDefinitions extends AbstractStepDefinitions {
 
     }
 
+    @Then("^I am happy$")
+    
+    public void IAmHappy() {
+    	// happy!
+    }
 
     @After
 
