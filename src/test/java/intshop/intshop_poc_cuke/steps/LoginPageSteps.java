@@ -20,7 +20,7 @@ public class LoginPageSteps {
 			
 			 System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\win\\chromedriver.exe");
 			 ChromeOptions chromeOptions = new ChromeOptions();
-			 chromeOptions.addArguments("--headless");
+			 //chromeOptions.addArguments("--headless");
 			 WebDriver driver = new ChromeDriver(chromeOptions);
 
 			 String baseWebUrl = "http://preprod.intshop.com/";

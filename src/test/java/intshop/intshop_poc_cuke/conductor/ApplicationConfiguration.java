@@ -8,13 +8,16 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public final class ApplicationConfiguration {
 
-    private static ApplicationConfiguration instance = new ApplicationConfiguration();
+	private static ApplicationConfiguration instance;
+	
+	public static ApplicationConfiguration getInstance() {
+		if(instance == null) {
+		instance = new ApplicationConfiguration();
+		}
+		return instance;
+	}
+	
     private String browser;
-
-    public static ApplicationConfiguration Instance() {
-    	
-        return instance;
-    }
 
     // Private constructor - you can't create a new ApplicationConfiguration - you must call ApplicationConfiguration.Instance();
 
@@ -73,7 +76,7 @@ public final class ApplicationConfiguration {
         } else {
             chromePath = String.format("src/test/resources/macosx/chromedriver");
         }
-        //chromePath = "src\\test\\resources\\win\\chromedriver.exe";
+        chromePath = "src\\test\\resources\\win\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", chromePath);
        
         //System.setProperty("webdriver.chrome.silentOutput", "true");
@@ -85,7 +88,7 @@ public final class ApplicationConfiguration {
       // We could've/should've used the WebDriverFactory here!
 
       ChromeOptions options = new ChromeOptions();
-      options.addArguments("--headless");
+      //options.addArguments("--headless");
     	
       /*
       if (this.browser.equals("chrome")) {

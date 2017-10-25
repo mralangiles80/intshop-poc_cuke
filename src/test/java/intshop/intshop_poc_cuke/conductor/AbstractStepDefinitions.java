@@ -8,7 +8,7 @@ public class AbstractStepDefinitions {
     private WebDriver driver;
 
     public LoginPage launchApp() {
-      this.applicationConfiguration = ApplicationConfiguration.Instance();  // gives us access to the single instance of the ApplicationConfiguration class.
+      this.applicationConfiguration = ApplicationConfiguration.getInstance();  // gives us access to the single instance of the ApplicationConfiguration class.
       this.driver = applicationConfiguration.getWebDriver();
       return new LoginPage(this.driver);
     }
