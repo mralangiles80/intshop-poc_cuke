@@ -78,9 +78,6 @@
   <profiles>
     <profile>
       <id>win-chrome</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>  <!-- This is the default profile -->
-      </activation>
       <properties>
         <propertyNameProfile>winchromeProperty</propertyNameProfile>
         <profileBrowser>chrome</profileBrowser>
@@ -117,6 +114,9 @@
     </profile>  
     <profile>
       <id>linux-chrome-headless</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>  <!-- This is the default profile -->
+      </activation>
       <properties>
         <profileBrowser>chrome-headless</profileBrowser>
         <profileOs>linux</profileOs>

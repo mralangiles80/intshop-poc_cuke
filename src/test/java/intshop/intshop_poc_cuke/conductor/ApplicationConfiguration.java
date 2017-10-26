@@ -1,9 +1,5 @@
 package intshop.intshop_poc_cuke.conductor;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -22,6 +18,7 @@ public final class ApplicationConfiguration {
 	}
 	
     private String browser;
+	private String os;
 
     // Private constructor - you can't create a new ApplicationConfiguration - you must call ApplicationConfiguration.Instance();
 
@@ -33,7 +30,7 @@ public final class ApplicationConfiguration {
 		
         Properties props = System.getProperties();
         
-        System.getProperties().list(System.out);
+        //System.getProperties().list(System.out);
         
         getDesiredBrowser(props);
 
@@ -58,10 +55,20 @@ public final class ApplicationConfiguration {
       // get os from pom
       
       String retrievedOs = props.getProperty("config.os");
-      
-      System.out.println(retrievedOs);
 
-      configureSystemPropertiesForWebDriver(retrievedOs);
+      if (retrievedOs == null || retrievedOs.length() == 0) {
+
+          // browser property was not retrieved - revert to a sensible default
+
+    	  retrievedOs = "linux";
+
+        }
+      
+      this.os = retrievedOs;
+
+      // set properties according to profile os and browser
+      
+      configureSystemPropertiesForWebDriver();
     }
 
 
@@ -69,42 +76,42 @@ public final class ApplicationConfiguration {
      * Sets the system properties required by the WebDriver depending on the operating system and the browser being
      * used.
      *
-     * Note that we only support the browsers Chrome and PhantomJs. We only support Mac OSX and Linux operating systems
-     * at the moment.
+
      */
-    private void configureSystemPropertiesForWebDriver(String driverOs) {
-        String chromePath;
-    	System.out.println(driverOs);
-    	if (driverOs.equalsIgnoreCase("windows")) {
-            //chromePath = String.format("src\\test\\resources\\win\\chromedriver.exe");
-        	chromePath = "src\\test\\resources\\win\\chromedriver.exe";
+    private void configureSystemPropertiesForWebDriver() {
+    	
+        String driverPath;
+    	if (this.os.equalsIgnoreCase("windows")) {
+    		
+    		driverPath = "src\\test\\resources\\win\\chromedriver.exe";
         	System.out.println("if statement true");
-        } 	else if (driverOs.equalsIgnoreCase("macosx")) {
-            	chromePath = "src/test/resources/macosx/chromedriver";
+        } 	
+    	else if (this.os.equalsIgnoreCase("macosx")) {
+        	driverPath = "src/test/resources/macosx/chromedriver";
         }
-        	else if (driverOs.equalsIgnoreCase("linux")) {
-        		chromePath = "/usr/lib/chromium-browser/chromedriver";
+    	
+        else if (this.os.equalsIgnoreCase("linux")) {
+        		driverPath = "/usr/lib/chromium-browser/chromedriver";
         }
-        	else {
+    	
+        else {
         		// default to windows
-        		chromePath = "src\\test\\resources\\win\\chromedriver.exe";
+        		driverPath = "src\\test\\resources\\win\\chromedriver.exe";
             	System.out.println("no os passed through");
         }
-        
+        String driverPathProperty = "webdriver.chrome.driver";
     
-        System.setProperty("webdriver.chrome.driver", chromePath);
+        System.setProperty(driverPathProperty, driverPath);
     }
 
     public WebDriver getWebDriver() {
 
-      // We could've/should've used the WebDriverFactory here!
-
       ChromeOptions options = new ChromeOptions();
       
-      if (this.browser.equals("chrome-headless")) {
+      if (this.browser.equalsIgnoreCase("chrome-headless")) {
     	  options.addArguments("--headless");
       }
-
+      
       return new ChromeDriver(options);
     }
 

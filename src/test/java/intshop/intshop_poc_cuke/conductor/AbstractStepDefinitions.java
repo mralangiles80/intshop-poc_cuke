@@ -2,18 +2,19 @@ package intshop.intshop_poc_cuke.conductor;
 
 import org.openqa.selenium.WebDriver;
 
+import intshop.intshop_poc_cuke.conductor.page_objects.HomePage;
+
 public class AbstractStepDefinitions {
 	
     private ApplicationConfiguration applicationConfiguration;
     private WebDriver driver;
 
-    public LoginPage launchApp() {
+    public HomePage launchApp() {
       this.applicationConfiguration = ApplicationConfiguration.getInstance();  // gives us access to the single instance of the ApplicationConfiguration class.
       this.driver = applicationConfiguration.getWebDriver();
-      return new LoginPage(this.driver);
+      return new HomePage(this.driver);
     }
     
-
     /**
      * Closes the browser after the test is executed.
      *
