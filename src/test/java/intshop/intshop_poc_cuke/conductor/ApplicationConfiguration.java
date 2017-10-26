@@ -1,5 +1,9 @@
 package intshop.intshop_poc_cuke.conductor;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -26,14 +30,12 @@ public final class ApplicationConfiguration {
         // Read the properties from the system properties - they are set from the pom.xml file  -- see below
 
         // We use profiles in the POM file for different configs
-
+		
         Properties props = System.getProperties();
-
+        
+        System.getProperties().list(System.out);
+        
         getDesiredBrowser(props);
-
-        // We also stored things like the url to the application in the POM file
-
-        // and the target operating system (although that can be detected)
 
     }
 
@@ -41,6 +43,7 @@ public final class ApplicationConfiguration {
     private void getDesiredBrowser(Properties props) {
 
       String retrievedBrowser = props.getProperty("config.browser");
+      System.out.println(retrievedBrowser);
 
       if (retrievedBrowser == null || retrievedBrowser.length() == 0) {
 
@@ -55,7 +58,9 @@ public final class ApplicationConfiguration {
       // get os from pom
       
       String retrievedOs = props.getProperty("config.os");
-  
+      
+      System.out.println(retrievedOs);
+
       configureSystemPropertiesForWebDriver(retrievedOs);
     }
 
@@ -67,19 +72,20 @@ public final class ApplicationConfiguration {
      * Note that we only support the browsers Chrome and PhantomJs. We only support Mac OSX and Linux operating systems
      * at the moment.
      */
-    private void configureSystemPropertiesForWebDriver(String os) {
+    private void configureSystemPropertiesForWebDriver(String driverOs) {
         String chromePath;
-        if (os == "windows") {
+    	System.out.println(driverOs);
+        if (driverOs == "windows") {
             //chromePath = String.format("src\\test\\resources\\win\\chromedriver.exe");
         	chromePath = "src\\test\\resources\\win\\chromedriver.exe";
+        	System.out.println("if statement true");
 
         } else {
-            chromePath = String.format("src/test/resources/macosx/chromedriver");
+            chromePath = "src/test/resources/macosx/chromedriver";
+        	System.out.println("if statement false");
         }
-        chromePath = "src\\test\\resources\\win\\chromedriver.exe";
+        //chromePath = "src\\test\\resources\\win\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", chromePath);
-       
-        //System.setProperty("webdriver.chrome.silentOutput", "true");
 
     }
 
@@ -88,19 +94,12 @@ public final class ApplicationConfiguration {
       // We could've/should've used the WebDriverFactory here!
 
       ChromeOptions options = new ChromeOptions();
-      //options.addArguments("--headless");
-    	
-      /*
-      if (this.browser.equals("chrome")) {
-    	  
-        return new ChromeDriver(options);
-
+      
+      if (this.browser.equals("chrome-headless")) {
+    	  options.addArguments("--headless");
       }
-      */
-
 
       return new ChromeDriver(options);
-      
     }
 
 }
