@@ -79,10 +79,10 @@ public final class ApplicationConfiguration {
             //chromePath = String.format("src\\test\\resources\\win\\chromedriver.exe");
         	chromePath = "src\\test\\resources\\win\\chromedriver.exe";
         	System.out.println("if statement true");
-        } 	else if (driverOs == "macosx") {
+        } 	else if (driverOs.equalsIgnoreCase("macosx")) {
             	chromePath = "src/test/resources/macosx/chromedriver";
         }
-        	else if (driverOs == "linux") {
+        	else if (driverOs.equalsIgnoreCase("linux")) {
         		chromePath = "/usr/lib/chromium-browser/chromedriver";
         }
         	else {
