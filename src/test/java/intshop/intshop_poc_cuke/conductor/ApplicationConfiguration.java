@@ -75,18 +75,24 @@ public final class ApplicationConfiguration {
     private void configureSystemPropertiesForWebDriver(String driverOs) {
         String chromePath;
     	System.out.println(driverOs);
-        if (driverOs == "windows") {
+    	if (driverOs.equalsIgnoreCase("windows")) {
             //chromePath = String.format("src\\test\\resources\\win\\chromedriver.exe");
         	chromePath = "src\\test\\resources\\win\\chromedriver.exe";
         	System.out.println("if statement true");
-
-        } else {
-            chromePath = "src/test/resources/macosx/chromedriver";
-        	System.out.println("if statement false");
+        } 	else if (driverOs == "macosx") {
+            	chromePath = "src/test/resources/macosx/chromedriver";
         }
-        //chromePath = "src\\test\\resources\\win\\chromedriver.exe";
+        	else if (driverOs == "linux") {
+        		chromePath = "/usr/lib/chromium-browser/chromedriver";
+        }
+        	else {
+        		// default to windows
+        		chromePath = "src\\test\\resources\\win\\chromedriver.exe";
+            	System.out.println("no os passed through");
+        }
+        
+    
         System.setProperty("webdriver.chrome.driver", chromePath);
-
     }
 
     public WebDriver getWebDriver() {

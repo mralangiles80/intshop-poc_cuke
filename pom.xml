@@ -39,10 +39,10 @@
         	<artifactId>selenium-java</artifactId>
         	<version>3.6.0</version>
     	</dependency>
-    	<dependency>
-    		<groupId>org.jbehave</groupId>
-    		<artifactId>jbehave-core</artifactId>
-    		<version>3.2</version>
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-safari-driver</artifactId>
+		    <version>2.53.0</version>
 		</dependency>
   </dependencies>
   
@@ -77,7 +77,7 @@
     
   <profiles>
     <profile>
-      <id>winchrome</id>
+      <id>win-chrome</id>
       <activation>
         <activeByDefault>true</activeByDefault>  <!-- This is the default profile -->
       </activation>
@@ -87,20 +87,60 @@
         <profileOs>windows</profileOs>
       </properties>
     </profile>
-    <profile>
-      <id>macchrome</id>
+	<profile>
+      <id>win-chrome-headless</id>
       <properties>
-        <propertyNameProfile>macchromeProperty</propertyNameProfile>
-        <profileBrowser>chrome-headless</profileBrowser>
-        <profileOs>macosx</profileOs>
-      </properties>
-    </profile>
-        <profile>
-      <id>winchrome-headless</id>
-      <properties>
-        <propertyNameProfile>winchrome-headlessProperty</propertyNameProfile>
         <profileBrowser>chrome-headless</profileBrowser>
         <profileOs>windows</profileOs>
+      </properties>
+    </profile>
+    <profile>
+      <id>win-firefox</id>
+      <properties>
+        <profileBrowser>firefox</profileBrowser>
+        <profileOs>windows</profileOs>
+      </properties>
+    </profile>  
+    <profile>
+      <id>win-ie</id>
+      <properties>
+        <profileBrowser>ie</profileBrowser>
+        <profileOs>windows</profileOs>
+      </properties>
+    </profile>  
+    <profile>
+      <id>win-safari-headless</id>
+      <properties>
+        <profileBrowser>safari-headless</profileBrowser>
+        <profileOs>windows</profileOs>
+      </properties>
+    </profile>  
+    <profile>
+      <id>linux-chrome-headless</id>
+      <properties>
+        <profileBrowser>chrome-headless</profileBrowser>
+        <profileOs>linux</profileOs>
+      </properties>
+    </profile>
+    <profile>
+      <id>linux-safari-headless</id>
+      <properties>
+        <profileBrowser>safari-headless</profileBrowser>
+        <profileOs>linux</profileOs>
+      </properties>
+    </profile>  
+    <profile>
+      <id>linux-firefox-headless</id>
+      <properties>
+        <profileBrowser>chrome-headless</profileBrowser>
+        <profileOs>linux</profileOs>
+      </properties>
+    </profile>  
+        <profile>
+      <id>mac-chrome</id>
+      <properties>
+        <profileBrowser>chrome</profileBrowser>
+        <profileOs>macosx</profileOs>
       </properties>
     </profile>
   </profiles>

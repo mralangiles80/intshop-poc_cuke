@@ -13,7 +13,7 @@ import cucumber.api.java.Before;
 	import org.openqa.selenium.chrome.ChromeDriver;
 	import org.openqa.selenium.chrome.ChromeOptions;
 
-public class LoginPageSteps {
+public class StandaloneSteps {
 
 		@Given("^I launch the browser and go to the correct URL$")
 		public void i_launch_the_browser_and_go_to_the_correct_URL() throws Throwable {

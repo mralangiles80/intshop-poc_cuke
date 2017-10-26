@@ -1,7 +1,7 @@
-Feature: CheckLoginLinks
+Feature: Standalone
 	In order to verify the login page is working properly 
-	As a User
-	I want to check all the elements are present
+	As a test automater
+	I want to launch webdriver and check the intstop page loads
 					 
 Scenario: Check Elements on Login Page
 Given I launch the browser and go to the correct URL
