@@ -14,6 +14,8 @@ import cucumber.api.java.Before;
 	import org.openqa.selenium.chrome.ChromeOptions;
 
 public class StandaloneSteps {
+	
+		private WebDriver driver;
 
 		@Given("^I launch the browser and go to the correct URL$")
 		public void i_launch_the_browser_and_go_to_the_correct_URL() throws Throwable {
@@ -21,7 +23,7 @@ public class StandaloneSteps {
 			 System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\win\\chromedriver.exe");
 			 ChromeOptions chromeOptions = new ChromeOptions();
 			 //chromeOptions.addArguments("--headless");
-			 WebDriver driver = new ChromeDriver(chromeOptions);
+			 driver = new ChromeDriver(chromeOptions);
 
 			 String baseWebUrl = "http://preprod.intshop.com/";
 			 String expectedLoginPageTitle = "IntShop";
@@ -30,13 +32,13 @@ public class StandaloneSteps {
 			 String actualLoginPageTitle = driver.getTitle(); 
 			 
 			 assertEquals(expectedLoginPageTitle, actualLoginPageTitle);
+			 //driver.findElement(By.xpath("//a[@title='Login']")).click();
 			 driver.close();
 		}
 
 		@When("^I click on the Login link on the landing page$")
 		public void i_click_on_the_Login_link_on_the_landing_page() throws Throwable {
-		    // Write code here that turns the phrase above into concrete actions
-		    //
+             //
 		}
 
 		@Then("^I see all the elements on the page$")
