@@ -25,14 +25,14 @@ public class WebDriverCheckStepsDefinitions extends AbstractStepDefinitions {
     	// happy!
     }
 
-    @After
+    //@After
 
-    @Override
+    //@Override
 
-    public void teardown() {
+    //public void teardown() {
 
-      super.teardown();
+    //  super.teardown();
 
-    }
+    //}
 
 }

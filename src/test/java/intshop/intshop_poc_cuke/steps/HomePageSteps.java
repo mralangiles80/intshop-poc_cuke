@@ -10,7 +10,7 @@ import cucumber.api.java.en.When;
 import intshop.intshop_poc_cuke.conductor.AbstractStepDefinitions;
 import intshop.intshop_poc_cuke.conductor.page_objects.HomePage;
 
-public class HomePageSteps {
+public class HomePageSteps extends AbstractStepDefinitions {
 
 	private HomePage homepage;
 	
@@ -21,26 +21,31 @@ public class HomePageSteps {
 	@Given("^I launch my browser and navigate to the IntShop homepage$")
 	public void i_launch_my_browser_and_navigate_to_the_IntShop_homepage() throws Throwable {
 		
-		homepage.goToUrl("http://preprod.intshop.com");
+		 homepage.goToUrl("http://preprod.intshop.com");
 		
-		 String expectedLoginPageTitle = "IntShop";
+		 String expectedHomePageTitle = "IntShop";
 		 
-		 String actualLoginPageTitle = homepage.getPageTitle(); 
+		 String actualHomePageTitle = homepage.getPageTitle(); 
 		 
-		 assertEquals(expectedLoginPageTitle, actualLoginPageTitle);
-	   //this.homepage = launchApp();
+		 assertEquals(expectedHomePageTitle, actualHomePageTitle);
+
 	}
 	
 	@When("^I click on the Login button on the IntShop homepage$")
 	public void i_click_on_the_Login_button_on_the_IntShop_homepage() throws Throwable {
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		
 		homepage.LoginButton().click();
 	}
 	
-	@After
-	
-    protected void teardown() {
-		homepage.teardown();
+    @After
+
+    @Override
+
+    public void teardown() {
+
+      super.teardown();
+
     }
 	
 }

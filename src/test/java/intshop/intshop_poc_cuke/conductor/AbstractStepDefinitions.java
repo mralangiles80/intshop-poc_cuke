@@ -21,10 +21,11 @@ public class AbstractStepDefinitions {
      * Note that Cucumber will not allow the @After annotation to be placed in a super class so each inheritor needs to
      * implement a marker method that has the annotation applied to it but then simply calls  this method.
      */
+
     protected void teardown() {
-      if (this.driver != null) {
-        this.driver.quit();
-        this.driver = null;
+        if (this.driver != null) {
+          this.driver.quit();
+          this.driver = null;
+        }
       }
-    }
 } 

@@ -7,7 +7,7 @@ import intshop.intshop_poc_cuke.conductor.page_objects.LoginPage;
 
 import org.junit.Assert;
 
-public class LoginPageSteps {
+public class LoginPageSteps extends AbstractStepDefinitions{
 
 	private LoginPage loginpage;
 	
@@ -17,13 +17,18 @@ public class LoginPageSteps {
 
 	@Then("^I see the Welcome message on the IntShop login page$")
 	public void i_see_the_Welcome_message_on_the_IntShop_login_page() throws Throwable {
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		
 	    Assert.assertEquals("Welcome to Intshop", loginpage.WelcomeMessage());
 	}
 	
-	@After
-	
-    protected void teardown() {
-		loginpage.teardown();
+    @After
+
+    @Override
+
+    public void teardown() {
+
+      super.teardown();
+
     }
 }
