@@ -32,7 +32,10 @@ public class StandaloneSteps {
 			 String actualLoginPageTitle = driver.getTitle(); 
 			 
 			 assertEquals(expectedLoginPageTitle, actualLoginPageTitle);
+			 
+			 //driver.findElement(By.name("postcode")).click();;
 			 //driver.findElement(By.xpath("//a[@title='Login']")).click();
+			 
 			 driver.close();
 		}
 

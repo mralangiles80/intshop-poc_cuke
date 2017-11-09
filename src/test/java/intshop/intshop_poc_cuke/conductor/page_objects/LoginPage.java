@@ -4,17 +4,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import intshop.intshop_poc_cuke.conductor.ApplicationConfiguration;
+
 public class LoginPage {
 
+	private ApplicationConfiguration applicationConfiguration;
 	private WebDriver driver;
 	
-	public LoginPage(WebDriver Driver){
-		driver = Driver;
+	public LoginPage(){
+		
+		this.applicationConfiguration = ApplicationConfiguration.getInstance();
+		this.driver = applicationConfiguration.getWebDriver();
 	}
 	
 	public String WelcomeMessage() {
 		
-        String message = driver.findElement(By.xpath("//ng-view/div[1]/div/div/div[1]/div/h1")).getText();
+        String message = driver.findElement(By.xpath("//h1")).getText();
         return message;
 	}
 	
@@ -23,5 +28,12 @@ public class LoginPage {
         //var button = _driver.FindElement(By.PartialLinkText("Login"));
         WebElement button = driver.findElement(By.xpath("//a[@title='Login']"));
         return button;
+    }
+    
+    public void teardown() {
+        if (this.driver != null) {
+          this.driver.quit();
+          this.driver = null;
+        }
     }
 }

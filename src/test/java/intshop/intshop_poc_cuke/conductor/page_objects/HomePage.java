@@ -4,13 +4,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage {
+import intshop.intshop_poc_cuke.conductor.ApplicationConfiguration;
 
+public class HomePage {
+	
+	private ApplicationConfiguration applicationConfiguration;
 	private WebDriver driver;
 	
-	public HomePage(WebDriver Driver){
-		driver = Driver;
-		driver.get("http://preprod.intshop.com");
+	public HomePage(){
+		
+		this.applicationConfiguration = ApplicationConfiguration.getInstance();
+		this.driver = applicationConfiguration.getWebDriver();
+		//driver.get("http://preprod.intshop.com");
+	}
+	
+	public void goToUrl(String url) {
+		
+		driver.get(url);
 	}
 	
     public WebElement LoginButton()
@@ -19,4 +29,16 @@ public class HomePage {
         WebElement button = driver.findElement(By.xpath("//a[@title='Login']"));
         return button;
     }
+    
+    public String getPageTitle() {
+    	
+    	return driver.getTitle();
+    }
+
+    public void teardown() {
+        if (this.driver != null) {
+          this.driver.quit();
+          this.driver = null;
+        }
+      }
 }

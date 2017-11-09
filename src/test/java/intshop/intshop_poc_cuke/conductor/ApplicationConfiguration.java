@@ -9,16 +9,18 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public final class ApplicationConfiguration {
 
 	private static ApplicationConfiguration instance;
+	private WebDriver driver;
 	
 	public static ApplicationConfiguration getInstance() {
 		if(instance == null) {
-		instance = new ApplicationConfiguration();
+		instance = new ApplicationConfiguration(); 
 		}
 		return instance;
 	}
 	
     private String browser;
 	private String os;
+
 
     // Private constructor - you can't create a new ApplicationConfiguration - you must call ApplicationConfiguration.Instance();
 
@@ -30,17 +32,30 @@ public final class ApplicationConfiguration {
 		
         Properties props = System.getProperties();
         
-        //System.getProperties().list(System.out);
-        
         getDesiredBrowser(props);
-
+        setWebDriver();
     }
+	
+	private void setWebDriver() {
+		
+        ChromeOptions options = new ChromeOptions();
+        
+        if (this.browser.equalsIgnoreCase("chrome-headless")) {
+      	  options.addArguments("--headless");
+        }
+        
+        this.driver = new ChromeDriver(options);
+		
+	}
 
+    public WebDriver getWebDriver() {
+    	
+    	return this.driver;
+      }
 
     private void getDesiredBrowser(Properties props) {
 
       String retrievedBrowser = props.getProperty("config.browser");
-      System.out.println(retrievedBrowser);
 
       if (retrievedBrowser == null || retrievedBrowser.length() == 0) {
 
@@ -84,7 +99,7 @@ public final class ApplicationConfiguration {
     	if (this.os.equalsIgnoreCase("windows")) {
     		
     		driverPath = "src\\test\\resources\\win\\chromedriver.exe";
-        	System.out.println("if statement true");
+
         } 	
     	else if (this.os.equalsIgnoreCase("macosx")) {
         	driverPath = "src/test/resources/macosx/chromedriver";
@@ -102,17 +117,6 @@ public final class ApplicationConfiguration {
         String driverPathProperty = "webdriver.chrome.driver";
     
         System.setProperty(driverPathProperty, driverPath);
-    }
-
-    public WebDriver getWebDriver() {
-
-      ChromeOptions options = new ChromeOptions();
-      
-      if (this.browser.equalsIgnoreCase("chrome-headless")) {
-    	  options.addArguments("--headless");
-      }
-      
-      return new ChromeDriver(options);
     }
 
 }

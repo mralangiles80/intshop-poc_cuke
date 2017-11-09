@@ -9,10 +9,10 @@ public class AbstractStepDefinitions {
     private ApplicationConfiguration applicationConfiguration;
     private WebDriver driver;
 
-    public HomePage launchApp() {
+    public WebDriver launchApp() {
       this.applicationConfiguration = ApplicationConfiguration.getInstance();  // gives us access to the single instance of the ApplicationConfiguration class.
-      this.driver = applicationConfiguration.getWebDriver();
-      return new HomePage(this.driver);
+      driver = applicationConfiguration.getWebDriver();
+      return this.driver;
     }
     
     /**

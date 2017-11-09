@@ -15,7 +15,7 @@ public class WebDriverCheckStepsDefinitions extends AbstractStepDefinitions {
 
     public void iHaveNavigatedToTheLoginPage() {
 
-      this.homePage = launchApp();  // launchApp is defined in the AbstractStepDefinitions class and will get us the correct web driver.
+      launchApp();  // launchApp is defined in the AbstractStepDefinitions class and will get us the correct web driver.
 
     }
 
