@@ -29,7 +29,7 @@ public class HomePage {
     {
     	int timeoutInSeconds = 10;
     	WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Login']")));
+    	wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//div"), 7));
     	
         WebElement button = driver.findElement(By.xpath("//a[@title='Login']"));
         return button;
@@ -39,7 +39,7 @@ public class HomePage {
     	
     	int timeoutInSeconds = 10;
     	WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-    	wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//div"), 3));
+    	wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//div"), 7));
     	
     	return driver.getTitle();
     }
