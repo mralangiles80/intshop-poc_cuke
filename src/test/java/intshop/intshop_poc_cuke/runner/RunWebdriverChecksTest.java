@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         format = { "pretty", "html:target/cucumber" },
         glue = { "intshop.intshop_poc_cuke.steps"},
-        features = "src\\test\\java\\intshop\\intshop_poc_cuke\\features\\smoke\\"
+        features = "src/test/java/intshop/intshop_poc_cuke/features/smoke"
 )
 
 public class RunWebdriverChecksTest {
