@@ -10,12 +10,11 @@ import intshop.intshop_poc_cuke.conductor.ApplicationConfiguration;
 
 public class HomePage {
 	
-	private ApplicationConfiguration applicationConfiguration;
 	private WebDriver driver;
 	
 	public HomePage(){
 		
-		this.applicationConfiguration = ApplicationConfiguration.getInstance();
+		ApplicationConfiguration applicationConfiguration = ApplicationConfiguration.getInstance();
 		this.driver = applicationConfiguration.getWebDriver();
 		//driver.get("http://preprod.intshop.com");
 	}
