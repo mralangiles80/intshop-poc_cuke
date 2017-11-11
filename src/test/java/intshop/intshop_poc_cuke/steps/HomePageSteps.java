@@ -21,6 +21,7 @@ public class HomePageSteps extends AbstractStepDefinitions {
 	@Given("^I launch my browser and navigate to the IntShop homepage$")
 	public void i_launch_my_browser_and_navigate_to_the_IntShop_homepage() throws Throwable {
 		
+		this.launchApp();
 		 homepage.goToUrl("http://preprod.intshop.com");
 		
 		 String expectedHomePageTitle = "IntShop";
