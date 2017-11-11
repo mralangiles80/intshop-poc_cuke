@@ -1,46 +1,52 @@
 package intshop.intshop_poc_cuke.steps;
 
-import cucumber.api.java.Before;
-	import cucumber.api.java.en.Given;
-	import cucumber.api.java.en.Then;
-	import cucumber.api.java.en.When;
+import cucumber.api.java.After;
+import cucumber.api.java.en.Then;
+import intshop.intshop_poc_cuke.conductor.AbstractStepDefinitions;
+import intshop.intshop_poc_cuke.conductor.page_objects.LoginPage;
 
-	import static org.junit.Assert.assertEquals;
-	import static org.junit.Assert.assertNotNull;
+import org.junit.Assert;
 
-	import org.openqa.selenium.By;
-	import org.openqa.selenium.WebDriver;
-	import org.openqa.selenium.chrome.ChromeDriver;
-	import org.openqa.selenium.chrome.ChromeOptions;
+public class LoginPageSteps extends AbstractStepDefinitions{
 
-public class LoginPageSteps {
-
-		@Given("^I launch the browser and go to the correct URL$")
-		public void i_launch_the_browser_and_go_to_the_correct_URL() throws Throwable {
-			 System.setProperty("webdriver.chrome.driver", "C:\\java\\webdrivers\\chromedriver.exe");
-			 ChromeOptions chromeOptions = new ChromeOptions();
-			 chromeOptions.addArguments("--headless");
-			 WebDriver driver = new ChromeDriver(chromeOptions);
-
-			 String baseWebUrl = "http://preprod.intshop.com/";
-			 String expectedLoginPageTitle = "IntShop";
-			 
-			 driver.get(baseWebUrl);
-			 String actualLoginPageTitle = driver.getTitle(); 
-			 
-			 assertEquals(expectedLoginPageTitle, actualLoginPageTitle);
-			 driver.close();
-		}
-
-		@When("^I click on the Login link on the landing page$")
-		public void i_click_on_the_Login_link_on_the_landing_page() throws Throwable {
-		    // Write code here that turns the phrase above into concrete actions
-		    //
-		}
-
-		@Then("^I see all the elements on the page$")
-		public void i_see_all_the_elements_on_the_page() throws Throwable {
-		    // Write code here that turns the phrase above into concrete actions
-		    //
-		}
+	private LoginPage loginpage;
+	
+	public LoginPageSteps() {
+		this.loginpage = new LoginPage();
 	}
+
+	@Then("^I see the Welcome message on the IntShop login page$")
+	public void i_see_the_Welcome_message_on_the_IntShop_login_page() throws Throwable {
+		Thread.sleep(1000);
+		Assert.assertEquals("login", loginpage.getLoginPageUrl());
+	    Assert.assertEquals("Welcome to Intshop", loginpage.WelcomeMessage());
+	}
+	
+	@Then("^I see the Login button on the IntShop login page$")
+	public void i_see_the_Login_button_on_the_IntShop_login_page() throws Throwable
+	{
+	    loginpage.LoginButton();
+	}
+
+	@Then("^I see the Intshop header logo on the IntShop login page$")
+	public void i_see_the_Intshop_header_logo_on_the_IntShop_login_page() throws Throwable 
+	{
+		loginpage.HeaderLogo();
+	}
+
+	@Then("^I see the Forgot Password link on the IntShop login page$")
+	public void i_see_the_Forgot_Password_link_on_the_IntShip_login_page() throws Throwable
+	{
+		loginpage.RecoverPasswordLink();
+	}
+	
+    @After
+
+    @Override
+
+    public void teardown() {
+
+      super.teardown();
+
+    }
+}
