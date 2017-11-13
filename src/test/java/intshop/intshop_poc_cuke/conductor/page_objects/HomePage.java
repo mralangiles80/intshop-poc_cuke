@@ -42,4 +42,27 @@ public class HomePage {
     	
     	return driver.getTitle();
     }
+    
+    public WebElement PostcodeInputField() {
+    	
+    	int timeoutInSeconds = 10;
+    	WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+    	wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//div"), 7)); 
+        WebElement inputfield = driver.findElement(By.xpath("//input[@name='postcode']"));
+        return inputfield;
+    }
+    
+    public WebElement FindNearbyGroceriesButton() {
+    	
+    	int timeoutInSeconds = 10;
+    	WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+    	wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//div"), 7)); 
+        WebElement button = driver.findElement(By.className("right-ico"));
+        return button;
+    }
+    
+    public void EnterPostcode(String postcode) {
+    
+    	PostcodeInputField().sendKeys(postcode);    	
+    }
 }
