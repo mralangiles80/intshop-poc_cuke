@@ -39,14 +39,14 @@ public class HomePageSteps extends AbstractStepDefinitions {
 		homepage.LoginButton().click();
 	}
 	
-	@When("^I enter the \"(.*?)\" in the \"(.*?)\" field$")
-	public void i_enter_the_in_the_field(String postcode, String arg2) throws Throwable
+	@When("^I enter the \"(.*?)\" text in the Type your post code field$")
+	public void i_enter_the_text_in_the_Type_your_post_code_field(String postcode) throws Throwable
 	{
 		homepage.EnterPostcode(postcode);
 	}
 	
-	@When("^I click on the \"(.*?)\" button$")
-	public void i_click_on_the_button(String arg1) throws Throwable
+	@When("^I click on the Find Near Groceries button$")
+	public void i_click_on_the_Find_Near_Groceries_button() throws Throwable
 	{
 		homepage.FindNearbyGroceriesButton().click();
 	}
