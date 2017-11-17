@@ -24,48 +24,42 @@ public class ShopListPage {
 		this.driver = applicationConfiguration.getWebDriver();
 	}
 	
-	public String Blakdf() { 	
-		driver.findElement(By.xpath("//div[ng-repeat='item in items'] and (contains(text(), 'bla'))"));
-		return null;
+	public WebElement ChangeLocationButton() {
 		
+    	int timeoutInSeconds = 10;
+    	WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+    	wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//div"), 7)); 
+        WebElement button = driver.findElement(By.xpath("//a[@title='Change Location']"));
+        return button;
 	}
 	
-	public List<String> Shops(){
-		List<String> shopList = new ArrayList();
+	public List<WebElement> Shops(){
 		
-		return shopList;
-		
+    	int timeoutInSeconds = 10;
+    	WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+    	wait.until(ExpectedConditions.elementToBeClickable(By.className("footer-logo")));
+
+        // this is a fudge till i can work out a better way
+    	List<WebElement> shops = driver.findElements(By.xpath("//*[contains(text(),'store')]"));
+        return shops;
 	}
 	
-	public String GetShopRow(int RowNumber){
+	public String GetShopRowName(int rowNumber){
 		
-		for (int i = 0; i < 10; i++)
-
-		{
-
-		try
-
-		{
+		List<WebElement> shops = Shops();
 		
-		return "blah";
-		//return driver.findElement(By.tagName("ng-repeat")).getText().toString();
-				
-		//.//FindElement(By.TagName("tbody"))
-
-		//.FindElements(By.TagName("tr"))[rowNumber].FindElements(
-
-		//By.TagName("td"))[columnNumber].Text;
-
-		}
-
-		catch (StaleElementReferenceException sere)
-
-		{
-
-		}
-
-		}
-		return null;
+        if (shops.size() > 0) {
+        	
+        	WebElement shopRow = shops.get(rowNumber-1);
 		
+        	String shopName =  shopRow.getText();
+	    
+        	return shopName;
+		
+        }
+		
+		else 
+			System.out.println("no shops to list");
+			return "";
 	};
 }

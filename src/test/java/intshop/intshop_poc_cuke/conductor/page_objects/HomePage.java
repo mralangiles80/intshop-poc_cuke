@@ -65,4 +65,10 @@ public class HomePage {
     
     	PostcodeInputField().sendKeys(postcode);    	
     }
+    
+    public WebElement HowItWorksLink() {
+    	
+        WebElement link = driver.findElement(By.linkText("How it works"));
+        return link;
+    }
 }

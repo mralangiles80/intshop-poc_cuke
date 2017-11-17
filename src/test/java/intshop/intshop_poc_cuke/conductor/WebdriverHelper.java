@@ -22,4 +22,12 @@ public class WebdriverHelper {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 		driver.findElement(by).click();
 	}
+	
+	public static void ClickLink(String linktext) {
+		
+		int timeoutInSeconds = 1000; 
+		WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+		wait.until(ExpectedConditions.elementToBeClickable(By.linkText(linktext)));
+		driver.findElement(By.linkText(linktext)).click();
+	}
 }

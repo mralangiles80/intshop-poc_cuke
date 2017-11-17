@@ -1,6 +1,6 @@
 package intshop.intshop_poc_cuke.steps;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.openqa.selenium.WebDriver;
 
@@ -10,6 +10,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 import intshop.intshop_poc_cuke.conductor.AbstractStepDefinitions;
+import intshop.intshop_poc_cuke.conductor.WebdriverHelper;
 import intshop.intshop_poc_cuke.conductor.page_objects.ShopListPage;
 
 public class ShopListPageSteps extends AbstractStepDefinitions {
@@ -22,7 +23,11 @@ public class ShopListPageSteps extends AbstractStepDefinitions {
 	
 	@Then("^I see the \"(.*?)\" shop$")
 	public void i_see_the_shop(String shopname) throws Throwable {
-		throw new PendingException();
+		
+		assertEquals(shopname, shopListPage.GetShopRowName(1));
+		
+		//shopListPage.ChangeLocationButton().click();
+		//WebdriverHelper.ClickLink("Change Location");
 	}
 	
     @After
